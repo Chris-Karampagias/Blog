@@ -3,20 +3,20 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <div className="navbar sticky top-0 shadow-md shadow-slate-400   bg-primary">
+    <div className="navbar z-10 sticky top-0 bg-neutral text-neutral-content">
       <div className="flex-1">
         <Link
           href="/home"
-          className="btn btn-ghost text-white text-3xl normal-case"
+          className="btn btn-ghost text-3xl normal-case text-white"
         >
-          Cool Blog
+          Tech Hub
         </Link>
       </div>
       <div className="flex-none sm:hidden">
         <ul className="menu menu-horizontal menu-md px-1">
           <li>
             <details>
-              <summary className="after:hidden text-white">
+              <summary className="after:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -33,12 +33,15 @@ export default function Navbar() {
               </summary>
               <ul className="p-2 w-[100px] translate-x-[-15%] bg-base-100">
                 <li>
-                  <Link href="/home" className="btn btn-ghost normal-case">
+                  <Link href="/home" className="btn normal-case text-neutral">
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link href="/home" className="btn btn-ghost normal-case">
+                  <Link
+                    href="/home"
+                    className="btn btn-ghost normal-case text-neutral-content"
+                  >
                     Posts
                   </Link>
                 </li>

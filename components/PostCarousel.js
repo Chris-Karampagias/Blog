@@ -48,15 +48,18 @@ export default function PostCarousel() {
                 >
                   <div className="hero-overlay bg-opacity-60"></div>
                   <div className="hero-content flex-col text-center text-white">
-                    <div className="max-w-sm flex flex-col space-y-32 md:space-y-20">
-                      <h1 className="mb-5 text-center text-3xl md:text-5xl font-bold">
+                    <div className="md:max-w-md xl:max-w-[1000px] flex flex-col gap-10">
+                      <h1 className=" text-center text-3xl md:text-5xl font-bold">
                         {post.title}
                       </h1>
-                      <p className="text-ellipsis text-2xl hidden md:inline whitespace-nowrap overflow-hidden ">
-                        {post.description}
+                      <p className="text-2xl hidden md:inline mb-20 max-h-[70px]">
+                        {post.description.length > 120
+                          ? post.description.slice(0, 120)
+                          : post.description}
+                        ...
                       </p>
                       <Link
-                        href=""
+                        href={`/posts/${post._id}`}
                         className="btn btn-secondary w-fit self-center"
                       >
                         View Post

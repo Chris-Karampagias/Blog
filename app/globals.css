@@ -6,3 +6,16 @@
   filter: invert(94%) sepia(6%) saturate(116%) hue-rotate(182deg)
     brightness(101%) contrast(88%);
 }
+
+.fading-text {
+  background: linear-gradient(
+    to bottom,
+    rgb(82, 82, 82) 55%,
+    rgba(125, 125, 125, 0.243) 15%,
+    rgba(168, 168, 168, 0.544) 25%,
+    rgba(135, 135, 135, 0.194) 10%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

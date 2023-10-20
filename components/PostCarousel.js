@@ -6,7 +6,7 @@ export default function PostCarousel() {
   const [posts, error, loading] = useLatestPosts();
   return (
     <>
-      {error && (
+      {error && !loading && (
         <div className="alert h-[400px] relative">
           <div className="text-xl flex gap-2 items-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
             <svg
@@ -26,12 +26,12 @@ export default function PostCarousel() {
           </div>
         </div>
       )}
-      {loading && (
+      {loading && !error && (
         <div className="relative h-[400px] alert">
           <span className="loading loading-spinner loading-lg top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] absolute"></span>
         </div>
       )}
-      {posts && (
+      {posts && !loading && !error && (
         <div className="carousel overflow-y-hidden h-[400px] w-[95%] mx-auto rounded-lg">
           {posts.map((post, index) => {
             return (

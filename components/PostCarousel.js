@@ -43,7 +43,7 @@ export default function PostCarousel() {
                 <div
                   className="hero h-full"
                   style={{
-                    backgroundImage: `url(blog-api-production-a764.up.railway.app/${post.image})`,
+                    backgroundImage: `url(https://blog-api-production-a764.up.railway.app/${post.image})`,
                   }}
                 >
                   <div className="hero-overlay bg-opacity-60"></div>

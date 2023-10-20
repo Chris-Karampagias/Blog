@@ -22,7 +22,7 @@ export default function PostList({ filteredPosts }) {
           <span className="loading loading-spinner loading-lg top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] absolute"></span>
         </div>
       )}
-      {posts && filteredPosts.length === 0 && (
+      {posts && filteredPosts.length === 0 && !loading && (
         <div className="flex flex-col gap-20 w-full items-center">
           {posts.map((post) => {
             return (
@@ -67,7 +67,7 @@ export default function PostList({ filteredPosts }) {
           })}
         </div>
       )}
-      {posts && filteredPosts.length > 0 && (
+      {posts && filteredPosts.length > 0 && !loading && (
         <div className="flex flex-col gap-20 w-full items-center">
           {filteredPosts.map((post) => {
             return (

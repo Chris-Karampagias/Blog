@@ -62,9 +62,7 @@ export default function Post() {
             </div>
           </div>
           <Image
-            src={
-              "https://blog-api-production-a764.up.railway.app/" + post.image
-            }
+            src={"http://localhost:4000/" + post.image}
             width={1300}
             height={1300}
             alt="Post image"

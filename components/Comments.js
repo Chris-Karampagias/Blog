@@ -29,7 +29,7 @@ export default function Comments({ post, setCommentsCount }) {
     try {
       setLoading(true);
       const res = await fetch(
-        `https://blog-api-production-a764.up.railway.app/api/posts/${post._id}/comments`,
+        `http://localhost:4000/api/posts/${post._id}/comments`,
         {
           method: "PUT",
           mode: "cors",

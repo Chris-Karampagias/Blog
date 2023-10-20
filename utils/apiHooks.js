@@ -6,7 +6,7 @@ export const useLatestPosts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch("https://blog-api-production-a764.up.railway.app/api/posts/latest", {
+    fetch("http://localhost:4000/api/posts/latest", {
       mode: "cors",
     })
       .then((res) => {
@@ -31,7 +31,7 @@ export const usePosts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch("https://blog-api-production-a764.up.railway.app/api/posts", {
+    fetch("http://localhost:4000/api/posts", {
       mode: "cors",
     })
       .then((res) => {
@@ -56,12 +56,9 @@ export const usePost = (postId) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch(
-      `https://blog-api-production-a764.up.railway.app/api/posts/${postId}`,
-      {
-        mode: "cors",
-      }
-    )
+    fetch(`http://localhost:4000/api/posts/${postId}`, {
+      mode: "cors",
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error("Server error");

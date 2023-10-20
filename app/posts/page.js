@@ -32,7 +32,7 @@ export default function Posts() {
           </div>
         </div>
       )}
-      {posts && (
+      {posts && !error && (
         <div className="space-y-10 mt-10 w-full">
           <SearchBar
             filteredPosts={filteredPosts}

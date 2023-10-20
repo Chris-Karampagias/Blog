@@ -33,7 +33,10 @@ export default function PostList({ filteredPosts }) {
               >
                 <figure>
                   <Image
-                    src={"http://localhost:4000/" + post.image}
+                    src={
+                      "https://blog-api-production-a764.up.railway.app/" +
+                      post.image
+                    }
                     width={800}
                     height={800}
                     alt="Post image"
@@ -78,7 +81,10 @@ export default function PostList({ filteredPosts }) {
               >
                 <figure>
                   <Image
-                    src={"http://localhost:4000/" + post.image}
+                    src={
+                      "https://blog-api-production-a764.up.railway.app/" +
+                      post.image
+                    }
                     width={800}
                     height={800}
                     alt="Post image"

@@ -39,7 +39,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    href="/home"
+                    href="/posts"
                     className="btn btn-ghost normal-case text-neutral-content"
                   >
                     Posts

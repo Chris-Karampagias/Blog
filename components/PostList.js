@@ -1,33 +1,18 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { DataContext } from "@/app/posts/page";
 import Image from "next/image";
 import { DateTime } from "luxon";
 import Link from "next/link";
-import htmlDecode from "@/utils/decodeHTML";
 
 export default function PostList({ filteredPosts }) {
   const { posts, error, loading } = useContext(DataContext);
-  const [filteredDesc, setFilteredDesc] = useState("");
   const formatDate = (date) => {
     const dateObject = new Date(date);
     return DateTime.fromJSDate(dateObject).toLocaleString(
       DateTime.DATETIME_MED
     );
   };
-
-  useEffect(() => {
-    posts.forEach((post) => {
-      let newFilteredDesc;
-      if (post.description.length > 150) {
-        newFilteredDesc = post.description.slice(0, 150);
-        newFilteredDesc += "...";
-      } else {
-        newFilteredDesc += "...";
-      }
-      setFilteredDesc(newFilteredDesc);
-    });
-  }, []);
 
   return (
     <>
@@ -57,7 +42,7 @@ export default function PostList({ filteredPosts }) {
                   />
                 </figure>
                 <div className="card-body justify-between  p-5 md:p-10 space-y-5">
-                  <div className="flex flex-col md:flex-row border-b-[1px] border-gray-200  md:justify-between">
+                  <div className="flex flex-col md:flex-row md:justify-between">
                     <h2 className="card-title self-center text-2xl md:text-3xl md:self-center">
                       {post.title}
                     </h2>
@@ -72,12 +57,6 @@ export default function PostList({ filteredPosts }) {
                       </p>
                     </div>
                   </div>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: htmlDecode(filteredDesc),
-                    }}
-                    className="text-md md:text-xl 2xl:text-2xl fading-text"
-                  />
                 </div>
               </Link>
             );
@@ -105,7 +84,7 @@ export default function PostList({ filteredPosts }) {
                   />
                 </figure>
                 <div className="card-body justify-between  p-5 md:p-10 space-y-5">
-                  <div className="flex flex-col md:flex-row border-b-[1px] border-gray-200  md:justify-between">
+                  <div className="flex flex-col md:flex-rowmd:justify-between">
                     <h2 className="card-title self-center text-2xl md:text-3xl md:self-center">
                       {post.title}
                     </h2>
@@ -120,12 +99,6 @@ export default function PostList({ filteredPosts }) {
                       </p>
                     </div>
                   </div>
-                  <p className="text-md md:text-xl 2xl:text-2xl fading-text">
-                    {post.description.length > 150
-                      ? post.description.slice(0, 150)
-                      : post.description}
-                    ...
-                  </p>
                 </div>
               </Link>
             );

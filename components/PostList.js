@@ -4,6 +4,7 @@ import { DataContext } from "@/app/posts/page";
 import Image from "next/image";
 import { DateTime } from "luxon";
 import Link from "next/link";
+import htmlDecode from "@/utils/decodeHTML";
 
 export default function PostList({ filteredPosts }) {
   const { posts, error, loading } = useContext(DataContext);
@@ -58,12 +59,12 @@ export default function PostList({ filteredPosts }) {
                       </p>
                     </div>
                   </div>
-                  <p className="text-md md:text-xl 2xl:text-2xl fading-text">
-                    {post.description.length > 150
-                      ? post.description.slice(0, 150)
-                      : post.description}
-                    ...
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: htmlDecode(post.description),
+                    }}
+                    className="text-md md:text-xl 2xl:text-2xl fading-text"
+                  />
                 </div>
               </Link>
             );

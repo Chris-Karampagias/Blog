@@ -6,6 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Comments from "@/components/Comments";
+import htmlDecode from "@/utils/decodeHTML";
 
 export default function Post() {
   const pathname = usePathname();
@@ -18,12 +19,6 @@ export default function Post() {
       DateTime.DATETIME_MED
     );
   };
-
-  function htmlDecode(content) {
-    let e = document.createElement("div");
-    e.innerHTML = content;
-    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-  }
 
   return (
     <>

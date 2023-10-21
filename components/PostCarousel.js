@@ -1,5 +1,6 @@
 "use client";
 import { useLatestPosts } from "@/utils/apiHooks";
+import htmlDecode from "@/utils/decodeHTML";
 import Link from "next/link";
 
 export default function PostCarousel() {
@@ -52,12 +53,13 @@ export default function PostCarousel() {
                       <h1 className=" text-center text-3xl md:text-5xl font-bold">
                         {post.title}
                       </h1>
-                      <p className="text-2xl hidden md:inline mb-20 max-h-[70px]">
-                        {post.description.length > 120
-                          ? post.description.slice(0, 120)
-                          : post.description}
-                        ...
-                      </p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: htmlDecode(post.description),
+                        }}
+                        className="text-2xl hidden md:inline mb-20 max-h-[70px] overflow-hidden text-ellipsis"
+                      />
+
                       <Link
                         href={`/posts/${post._id}`}
                         className="btn btn-secondary w-fit self-center"

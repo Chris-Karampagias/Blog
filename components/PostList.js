@@ -1,5 +1,5 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "@/app/posts/page";
 import Image from "next/image";
 import { DateTime } from "luxon";
@@ -15,6 +15,19 @@ export default function PostList({ filteredPosts }) {
       DateTime.DATETIME_MED
     );
   };
+
+  useEffect(() => {
+    posts.forEach((post) => {
+      let filteredDesc;
+      if (post.description.length > 150) {
+        filteredDesc = post.description.slice(0, 150);
+        filteredDesc += "...";
+      } else {
+        filteredDesc += "...";
+      }
+      post.description = filteredDesc;
+    });
+  }, []);
 
   return (
     <>

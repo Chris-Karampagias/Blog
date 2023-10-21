@@ -74,7 +74,7 @@ export default function PostList({ filteredPosts }) {
                   </div>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: htmlDecode(post.description),
+                      __html: htmlDecode(filteredDesc),
                     }}
                     className="text-md md:text-xl 2xl:text-2xl fading-text"
                   />

@@ -78,9 +78,10 @@ export default function Post() {
               {commentsCount}
             </div>
           </Link>
-          <p className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 text-md md:text-3xl border-t-[1px] border-gray-200">
-            {post.description}
-          </p>
+          <p
+            dangerouslySetInnerHTML={{ __html: post.description }}
+            className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 text-md md:text-3xl border-t-[1px] border-gray-200"
+          />
           <Comments post={post} setCommentsCount={setCommentsCount} />
         </div>
       )}

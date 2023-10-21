@@ -19,6 +19,12 @@ export default function Post() {
     );
   };
 
+  function htmlDecode(content) {
+    let e = document.createElement("div");
+    e.innerHTML = content;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  }
+
   return (
     <>
       {loading && (
@@ -79,7 +85,7 @@ export default function Post() {
             </div>
           </Link>
           <p
-            dangerouslySetInnerHTML={{ __html: post.description }}
+            dangerouslySetInnerHTML={{ __html: htmlDecode(post.description) }}
             className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 text-md md:text-3xl border-t-[1px] border-gray-200"
           />
           <Comments post={post} setCommentsCount={setCommentsCount} />

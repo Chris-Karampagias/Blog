@@ -1,6 +1,6 @@
 A blog app made with NextJS, Tailwind, DaisyUI, NodeJS, Express & MongoDB. <br/><br/>
 The app consists of 2 frontends and 1 backend API: <br/><br/>
-A [gif](https://imgur.com/a/m4PMjy0) for the blog
+A [short](https://drive.google.com/file/d/1r_MZvEsAG-CQvf3dfZNWIECbsIuBMXhy/view?usp=share_link) for the blog
 
 1. The [blog](https://blog-gamma-cyan-31.vercel.app/posts)<br/>
 2. The [cms](https://github.com/Chris-Karampagias/Blog-CMS) for the blog

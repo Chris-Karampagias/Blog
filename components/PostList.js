@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "@/app/posts/page";
 import Image from "next/image";
 import { DateTime } from "luxon";
@@ -8,7 +8,7 @@ import htmlDecode from "@/utils/decodeHTML";
 
 export default function PostList({ filteredPosts }) {
   const { posts, error, loading } = useContext(DataContext);
-
+  const [filteredDesc, setFilteredDesc] = useState("");
   const formatDate = (date) => {
     const dateObject = new Date(date);
     return DateTime.fromJSDate(dateObject).toLocaleString(
@@ -18,14 +18,14 @@ export default function PostList({ filteredPosts }) {
 
   useEffect(() => {
     posts.forEach((post) => {
-      let filteredDesc;
+      let newFilteredDesc;
       if (post.description.length > 150) {
-        filteredDesc = post.description.slice(0, 150);
-        filteredDesc += "...";
+        newFilteredDesc = post.description.slice(0, 150);
+        newFilteredDesc += "...";
       } else {
-        filteredDesc += "...";
+        newFilteredDesc += "...";
       }
-      post.description = filteredDesc;
+      setFilteredDesc(newFilteredDesc);
     });
   }, []);
 

@@ -32,7 +32,7 @@ export default function PostCarousel() {
         </div>
       )}
       {posts && !loading && !error && (
-        <div className="carousel overflow-y-hidden h-[400px] w-[95%] mx-auto rounded-lg">
+        <div className="carousel overflow-y-hidden h-[400px] w-[95%] 2xl:w-2/3 mx-auto rounded-lg">
           {posts.map((post, index) => {
             return (
               <div
@@ -52,12 +52,6 @@ export default function PostCarousel() {
                       <h1 className=" text-center text-3xl md:text-5xl font-bold">
                         {post.title}
                       </h1>
-                      <p className="text-2xl hidden md:inline mb-20 max-h-[70px]">
-                        {post.description.length > 120
-                          ? post.description.slice(0, 120)
-                          : post.description}
-                        ...
-                      </p>
                       <Link
                         href={`/posts/${post._id}`}
                         className="btn btn-secondary w-fit self-center"

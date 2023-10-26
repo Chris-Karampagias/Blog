@@ -1,7 +1,9 @@
 "use client";
 import Link from "next/link";
+import { useRef } from "react";
 
 export default function Navbar() {
+  const options = useRef(null);
   return (
     <div className="navbar z-10 sticky top-0 bg-neutral text-neutral-content">
       <div className="flex-1">
@@ -12,11 +14,13 @@ export default function Navbar() {
           Tech Hub
         </Link>
       </div>
-      <div className="flex-none sm:hidden">
-        <ul className="menu menu-horizontal menu-md px-1">
+      <div className="sm:hidden">
+        <ul className="menu menu-md px-1">
           <li>
-            <details>
-              <summary className="after:hidden">
+            <div className="flex flex-col relative">
+              <div
+                onClick={() => options.current.classList.toggle("opacity-0")}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -30,23 +34,35 @@ export default function Navbar() {
                     d="M4 6h16M4 12h16M4 18h16"
                   ></path>
                 </svg>
-              </summary>
-              <ul className="p-2 w-[100px] translate-x-[-15%] bg-base-100">
+              </div>
+              <ul
+                className="p-2 w-[100px] bg-base-100 absolute translate-y-[55%] translate-x-[-11%] rounded-lg transition-all duration-300"
+                ref={options}
+              >
                 <li>
-                  <Link href="/home" className="btn normal-case text-neutral">
+                  <Link
+                    href="/home"
+                    className="btn normal-case text-neutral"
+                    onClick={() =>
+                      options.current.classList.toggle("opacity-0")
+                    }
+                  >
                     Home
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/home"
+                    href="/posts"
                     className="btn btn-ghost normal-case text-neutral-content"
+                    onClick={() =>
+                      options.current.classList.toggle("opacity-0")
+                    }
                   >
                     Posts
                   </Link>
                 </li>
               </ul>
-            </details>
+            </div>
           </li>
         </ul>
       </div>

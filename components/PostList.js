@@ -29,7 +29,7 @@ export default function PostList({ filteredPosts }) {
               <Link
                 href={`posts/${post._id}`}
                 key={post._id}
-                className="card sm:max-w-[600px] lg:max-w-[800px] mx-5 md:mx-0 lg:aspect-square bg-base-100 shadow-2xl transition-all duration-300 hover:scale-[1.02]"
+                className="card sm:max-w-[600px] lg:max-w-[800px] mx-5 md:mx-0 bg-base-100 shadow-2xl transition-all duration-300 hover:scale-[1.02]"
               >
                 <figure>
                   <Image
@@ -39,28 +39,20 @@ export default function PostList({ filteredPosts }) {
                     alt="Post image"
                   />
                 </figure>
-                <div className="card-body justify-between  p-5 md:p-10 space-y-5">
-                  <div className="flex flex-col md:flex-row border-b-[1px] border-gray-200  md:justify-between">
-                    <h2 className="card-title self-center text-2xl md:text-3xl md:self-center">
-                      {post.title}
-                    </h2>
-                    <div className="flex flex-col">
-                      <p className="text-slate-500 mt-3 lg:text-xl">
-                        <span className="font-bold">Posted: </span>
-                        {formatDate(post.postedAt)}
-                      </p>
-                      <p className="text-slate-500 mt-3 lg:text-xl">
-                        <span className="font-bold">Last edit: </span>
-                        {formatDate(post.updatedAt)}
-                      </p>
-                    </div>
+                <div className="card-body gap-5 p-2 md:p-5 ">
+                  <div className="flex flex-col self-end">
+                    <p className="text-slate-500 mt-2 text-sm lg:text-xl">
+                      <span className="font-bold">Posted: </span>
+                      {formatDate(post.postedAt)}
+                    </p>
+                    <p className="text-slate-500 mt-2 text-sm lg:text-xl">
+                      <span className="font-bold">Last edit: </span>
+                      {formatDate(post.updatedAt)}
+                    </p>
                   </div>
-                  <p className="text-md md:text-xl 2xl:text-2xl fading-text">
-                    {post.description.length > 150
-                      ? post.description.slice(0, 150)
-                      : post.description}
-                    ...
-                  </p>
+                  <div className="card-title text-lg md:text-2xl xl:text-3xl">
+                    <h2>{post.title}</h2>
+                  </div>
                 </div>
               </Link>
             );
@@ -74,7 +66,7 @@ export default function PostList({ filteredPosts }) {
               <Link
                 href={`posts/${post._id}`}
                 key={post._id}
-                className="card max-w-[800px] lg:aspect-square bg-base-100 shadow-2xl transition-all duration-300 hover:scale-[1.02]"
+                className="card sm:max-w-[600px] lg:max-w-[800px] mx-5 md:mx-0 bg-base-100 shadow-2xl transition-all duration-300 hover:scale-[1.02]"
               >
                 <figure>
                   <Image
@@ -84,28 +76,20 @@ export default function PostList({ filteredPosts }) {
                     alt="Post image"
                   />
                 </figure>
-                <div className="card-body justify-between  p-5 md:p-10 space-y-5">
-                  <div className="flex flex-col md:flex-row border-b-[1px] border-gray-200  md:justify-between">
-                    <h2 className="card-title self-center text-2xl md:text-3xl md:self-center">
-                      {post.title}
-                    </h2>
-                    <div className="flex flex-col">
-                      <p className="text-slate-500 mt-3 lg:text-xl">
-                        <span className="font-bold">Posted: </span>
-                        {formatDate(post.postedAt)}
-                      </p>
-                      <p className="text-slate-500 mt-3 lg:text-xl">
-                        <span className="font-bold">Last edit: </span>
-                        {formatDate(post.updatedAt)}
-                      </p>
-                    </div>
+                <div className="card-body gap-5 p-2 md:p-5 ">
+                  <div className="flex flex-col self-end">
+                    <p className="text-slate-500 mt-2 text-sm lg:text-xl">
+                      <span className="font-bold">Posted: </span>
+                      {formatDate(post.postedAt)}
+                    </p>
+                    <p className="text-slate-500 mt-2 text-sm lg:text-xl">
+                      <span className="font-bold">Last edit: </span>
+                      {formatDate(post.updatedAt)}
+                    </p>
                   </div>
-                  <p className="text-md md:text-xl 2xl:text-2xl fading-text">
-                    {post.description.length > 150
-                      ? post.description.slice(0, 150)
-                      : post.description}
-                    ...
-                  </p>
+                  <div className="card-title text-lg md:text-2xl xl:text-3xl">
+                    <h2>{post.title}</h2>
+                  </div>
                 </div>
               </Link>
             );

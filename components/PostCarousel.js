@@ -33,7 +33,7 @@ export default function PostCarousel() {
         </div>
       )}
       {posts && !loading && !error && (
-        <div className="carousel overflow-y-hidden h-[400px] w-[95%] mx-auto rounded-lg">
+        <div className="carousel overflow-y-hidden h-[400px] w-[95%] 2xl:w-2/3 mx-auto rounded-lg">
           {posts.map((post, index) => {
             return (
               <div
@@ -49,17 +49,10 @@ export default function PostCarousel() {
                 >
                   <div className="hero-overlay bg-opacity-60"></div>
                   <div className="hero-content flex-col text-center text-white">
-                    <div className="md:max-w-md xl:max-w-[1000px] flex flex-col gap-10">
+                    <div className="md:max-w-md xl:max-w-[1000px] flex flex-col gap-32">
                       <h1 className=" text-center text-3xl md:text-5xl font-bold">
                         {post.title}
                       </h1>
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: htmlDecode(post.description),
-                        }}
-                        className="text-2xl hidden md:inline mb-20 max-h-[70px] overflow-hidden text-ellipsis"
-                      />
-
                       <Link
                         href={`/posts/${post._id}`}
                         className="btn btn-secondary w-fit self-center"

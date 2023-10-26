@@ -52,11 +52,11 @@ export default function Post() {
           <div className="flex flex-col gap-5 sm:flex-row justify-between">
             <h1 className="text-2xl md:text-5xl self-center">{post.title}</h1>
             <div className="flex self-center md:self-start flex-col">
-              <p className="text-slate-500 mt-3 lg:text-xl">
+              <p className="text-slate-500 mt-3 lg:text-xl 2xl:text-2xl">
                 <span className="font-bold">Posted: </span>
                 {formatDate(post.postedAt)}
               </p>
-              <p className="text-slate-500 mt-3 lg:text-xl">
+              <p className="text-slate-500 mt-3 lg:text-xl 2xl:text-2xl">
                 <span className="font-bold">Last edit: </span>
                 {formatDate(post.updatedAt)}
               </p>
@@ -66,8 +66,8 @@ export default function Post() {
             src={
               "https://blog-api-production-a764.up.railway.app/" + post.image
             }
-            width={1300}
-            height={1300}
+            width={1200}
+            height={1200}
             alt="Post image"
             className="self-center rounded-md"
           />
@@ -79,8 +79,10 @@ export default function Post() {
               {commentsCount}
             </div>
           </Link>
-          <p
-            dangerouslySetInnerHTML={{ __html: htmlDecode(post.description) }}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: post.description,
+            }}
             className="first-letter:text-7xl first-letter:font-bold first-letter:mr-3 text-md md:text-3xl border-t-[1px] border-gray-200"
           />
           <Comments post={post} setCommentsCount={setCommentsCount} />

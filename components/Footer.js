@@ -16,7 +16,7 @@ export default function Footer() {
         </svg>
         <p>Copyright © 2023 - Chris Karampagias</p>
       </aside>
-      <nav className="grid-flow-col gap-5 md:place-self-center md:justify-self-end">
+      <nav className="grid-flow-col gap-5 justify-self-center md:justify-self-end">
         <Link href="https://github.com/Chris-Karampagias" target="_blank">
           <svg
             viewBox="0 0 128 128"

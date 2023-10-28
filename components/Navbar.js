@@ -4,6 +4,8 @@ import { useRef } from "react";
 
 export default function Navbar() {
   const options = useRef(null);
+  const homeButton = useRef(null);
+  const postsButton = useRef(null);
   return (
     <div className="navbar z-10 sticky top-0 bg-neutral text-neutral-content">
       <div className="flex-1">
@@ -43,9 +45,12 @@ export default function Navbar() {
                   <Link
                     href="/home"
                     className="btn normal-case text-neutral"
-                    onClick={() =>
-                      options.current.classList.toggle("opacity-0")
-                    }
+                    onClick={() => {
+                      options.current.classList.toggle("opacity-0");
+                      homeButton.current.classList.toggle("btn-ghost");
+                      postsButton.current.classList.toggle("btn-ghost");
+                    }}
+                    ref={homeButton}
                   >
                     Home
                   </Link>
@@ -53,10 +58,13 @@ export default function Navbar() {
                 <li>
                   <Link
                     href="/posts"
-                    className="btn btn-ghost normal-case text-neutral-content"
-                    onClick={() =>
-                      options.current.classList.toggle("opacity-0")
-                    }
+                    className="btn btn-ghost normal-case text-neutral"
+                    onClick={() => {
+                      options.current.classList.toggle("opacity-0");
+                      homeButton.current.classList.toggle("btn-ghost");
+                      postsButton.current.classList.toggle("btn-ghost");
+                    }}
+                    ref={postsButton}
                   >
                     Posts
                   </Link>

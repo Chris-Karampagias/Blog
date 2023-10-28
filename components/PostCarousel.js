@@ -48,7 +48,7 @@ export default function PostCarousel() {
                 >
                   <div className="hero-overlay bg-opacity-60"></div>
                   <div className="hero-content flex-col text-center text-white">
-                    <div className="md:max-w-md xl:max-w-[1000px] flex flex-col gap-10">
+                    <div className="md:max-w-md xl:max-w-[1000px] flex flex-col gap-32">
                       <h1 className=" text-center text-3xl md:text-5xl font-bold">
                         {post.title}
                       </h1>

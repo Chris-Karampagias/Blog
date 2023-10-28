@@ -36,7 +36,7 @@ export default function Navbar() {
                 </svg>
               </div>
               <ul
-                className="p-2 w-[100px] bg-base-100 absolute translate-y-[55%] translate-x-[-11%] rounded-lg transition-all duration-300"
+                className="p-2 w-[100px] bg-base-100 absolute translate-y-[55%] translate-x-[-11%] rounded-lg transition-all duration-300 opacity-0"
                 ref={options}
               >
                 <li>

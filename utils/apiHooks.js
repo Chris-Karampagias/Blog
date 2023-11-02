@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 export const useLatestPosts = () => {
   const [posts, setPosts] = useState(null);
@@ -52,29 +53,27 @@ export const usePosts = () => {
 };
 
 export const usePost = (postId) => {
-  const [post, setPost] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    fetch(
-      `https://blog-api-production-a764.up.railway.app/api/posts/${postId}`,
-      {
-        mode: "cors",
-      }
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Server error");
+  return useQuery({
+    queryKey: ["post", postId],
+    queryFn: ({ queryKey }) => {
+      return fetch(
+        `https://blog-api-production-a764.up.railway.app/api/posts/${queryKey[1]}`,
+        {
+          mode: "cors",
         }
-        return res.json();
-      })
-      .then((postData) => {
-        setPost(postData);
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-  return [post, error, loading];
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Server error");
+          }
+          return res.json();
+        })
+        .catch((err) => {
+          throw new Error(err.message);
+        });
+    },
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+    refetchInterval: 1000 * 60 * 2,
+  });
 };

@@ -1,22 +1,24 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { DateTime } from "luxon";
 import { v4 as uuidv4 } from "uuid";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export default function Comments({ post, setCommentsCount }) {
-  const [comments, setComments] = useState(post.comments);
+export default function Comments({ postId, comments }) {
+  const queryClient = useQueryClient();
   const [commentToAdd, setCommentToAdd] = useState({
     authorName: "",
     title: "",
     content: "",
   });
 
-  useEffect(() => {
-    setCommentsCount(comments.length);
-  }, []);
-
-  const [loading, setLoading] = useState(null);
+  const commentsMutation = useMutation({
+    mutationFn: (commentToAdd) => addComment(postId, commentToAdd),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["post"] });
+    },
+  });
 
   const formatDate = (date) => {
     const dateObject = new Date(date);
@@ -25,44 +27,27 @@ export default function Comments({ post, setCommentsCount }) {
     );
   };
 
-  const addComment = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch(
-        `https://blog-api-production-a764.up.railway.app/api/posts/${post._id}/comments`,
-        {
-          method: "PUT",
-          mode: "cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(commentToAdd),
+  const addComment = (postId, commentToAdd) => {
+    return fetch(
+      `https://blog-api-production-a764.up.railway.app/api/posts/${postId}/comments`,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(commentToAdd),
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Server error");
         }
-      );
-      if (!res.ok) {
-        throw new Error("Server error");
-      }
-      const result = await res.json();
-      if (result.error) {
-        result.error.forEach((err) => {
-          toast.error(err.message);
-        });
-        return;
-      }
-      toast.success("Comment added succesfully");
-      setComments([
-        { ...commentToAdd, postedAt: new Date(Date.now()), _id: uuidv4() },
-        ...comments,
-      ]);
-      setCommentToAdd({
-        authorName: "",
-        title: "",
-        content: "",
+        toast.success("Comment added succesfully");
+        return res.json();
+      })
+      .catch((err) => {
+        toast.error(err.message);
+        throw new Error(err.message);
       });
-      setCommentsCount(comments.length + 1);
-    } catch (err) {
-      toast.error(err.message);
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -78,9 +63,14 @@ export default function Comments({ post, setCommentsCount }) {
         encType="multipart/form-data"
         action=""
         method=""
-        onSubmit={async (e) => {
+        onSubmit={(e) => {
           e.preventDefault();
-          await addComment();
+          commentsMutation.mutate(commentToAdd);
+          setCommentToAdd({
+            authorName: "",
+            title: "",
+            content: "",
+          });
         }}
       >
         <h3 className="text-xl lg:text-2xl mb-2 font-bold">Leave a comment</h3>
@@ -140,12 +130,14 @@ export default function Comments({ post, setCommentsCount }) {
         <button
           type="submit"
           className={
-            loading
+            commentsMutation.isPending
               ? "btn btn-accent self-center mt-2 btn-disabled"
               : "btn btn-accent self-center mt-2"
           }
         >
-          {loading && <span className="loading loading-spinner"></span>}
+          {commentsMutation.isPending && (
+            <span className="loading loading-spinner"></span>
+          )}
           Post
         </button>
       </form>
@@ -197,6 +189,26 @@ export default function Comments({ post, setCommentsCount }) {
               </div>
             );
           })}
+        </div>
+      )}
+      {commentsMutation.isError && (
+        <div className="alert h-[400px] relative">
+          <div className="text-xl flex gap-2 items-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>Failed to post comment</span>
+          </div>
         </div>
       )}
     </div>
